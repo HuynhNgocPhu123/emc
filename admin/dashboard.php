@@ -151,7 +151,6 @@ if (isset($_REQUEST["news"])) {
         <i class="fas fa-file-alt"></i> Tin tức</a>
       <a href="contactadmin.php"><i class="fas fa-eye"></i> Xem liên hệ</a>
       <a href="partneradmin.php"><i class="fas fa-handshake"></i> Đối tác</a>
-      <a href="customeradmin.php"><i class="fas fa-user-friends"></i> Khách hàng</a>
       <a href="dashboard.php?logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
     </nav>
   </aside>

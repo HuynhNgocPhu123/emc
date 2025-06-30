@@ -588,148 +588,7 @@ img {
   }
 }
 
-.product-section {
-  width: 100%;
-  margin: 100px auto; 
-    background-color: #ffffff;
 
-}
-
-.why-choose-us-section {
-  width: 90%;
-  max-width: 1300px;
-  margin: 100px auto; 
-  padding: 0 20px;
-  text-align: center;
-
-}
-
-.why-choose-us-section h1 {
-  font-size: 3.5em;
-  font-weight: 700;
-  line-height: 1.15;
-  margin-bottom: 25px;
-}
-
-.reasons-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-  gap: 30px; 
-  justify-content: center; 
-  padding-top: 30px;
-}
-
-.reason-item {
-  background-color: #fff; 
-
-  border-radius: 15px;
-  padding: 30px; 
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; 
-  text-align: left; 
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.reason-item:hover {
-  background-color: #2E7D32; 
-  transform: translateY(-8px); 
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); 
-}
-
-.reason-number {
-  font-size: 5rem; 
-  font-weight: 700; 
-  color: radial-gradient(ellipse at 70% 40%, rgba(46,204,64,0.18) 60%, rgba(24,31,38,0.95) 0%), radial-gradient(ellipse at 20% 20%, rgba(46,204,64,0.10) 80%, rgba(24,31,38,0.95) 0%), #2E7D32; 
-  text-shadow: 1px 1px 3px #000000;
-}
-
-.reason-item h3 {
-  font-size: 1.6em;
-  font-weight: 600;
-  margin-bottom: 15px;
-  color: #111; 
-}
-
-.reason-item p {
-  font-size: 1em;
-  line-height: 1.6;
-  opacity: 0.85;
-  color: #111; 
-}
-
-
-/* === Responsive Adjustments for Why Choose Us === */
-@media (max-width: 992px) {
-  .why-choose-us-section {
-      margin: 80px auto;
-  }
-
-  .why-choose-us-section h1 {
-      font-size: 2.2em;
-      margin-bottom: 40px;
-  }
-
-  .reasons-grid {
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-  }
-
-  .reason-item {
-      padding: 25px;
-  }
-
-  .reason-number {
-      font-size: 2.5em;
-      margin-bottom: 15px;
-  }
-
-  .reason-item h3 {
-      font-size: 1.4em;
-      margin-bottom: 10px;
-  }
-
-  .reason-item p {
-      font-size: 0.9em;
-  }
-}
-
-@media (max-width: 600px) {
-  .why-choose-us-section {
-      margin: 50px auto;
-      padding: 0 15px;
-  }
-
-  .why-choose-us-section h1 {
-      font-size: 1.8em;
-      margin-bottom: 30px;
-  }
-
-  .reasons-grid {
-      grid-template-columns: 1fr; /* Một cột trên màn hình rất nhỏ */
-      gap: 20px;
-  }
-
-  .reason-item {
-      padding: 20px;
-  }
-
-  .reason-number {
-      font-size: 2em; 
-      margin-bottom: 10px;
-  }
-
-  .reason-item h3 {
-      font-size: 1.2em;
-      margin-bottom: 8px;
-  }
-
-  .reason-item p {
-      font-size: 0.85em;
-  }
-}
 /* leadership */
 .leadership-team-section {
   padding: 100px 0;
@@ -1636,4 +1495,41 @@ img {
 
 .text-success {
   color: #2E7D32;
+}
+/* ................... */
+.theme-text {
+  color: #2E7D32;
+}
+
+.card-img-top {
+  height: 200px;
+  width: 100%;
+}
+.card {
+  z-index: 1;
+  overflow: hidden;
+  transition: 0.5s;
+}
+.card:hover {
+  color: white;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  left: -100%;
+  top: 0%;
+  background: #2E7D32;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s;
+  z-index: -1;
+}
+.card:hover::before {
+  left: 0%;
+  color: white;
+}
+.container-fluid {
+  background-image: url("blob-scene-haikei.svg");
+  background-position: center;
+  background-size: cover;
 }

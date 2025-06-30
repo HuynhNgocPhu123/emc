@@ -82,30 +82,49 @@
             </div>
         </div>
     </section>
-    <div class="product-section">
-    <section class="why-choose-us-section">
-        <h1>
-        <span style="color: #2E7D32;">Sản phẩm và dịch vụ</span>
-        </h1>
-        <div class="reasons-grid">
-            <div class="reason-item">
-                <div class="reason-number">1</div>
-                <h3>Logistics</h3>
-                <p>Giải pháp vận chuyển thông minh, quản lý kho bãi hiện đại, tối ưu hóa chuỗi cung ứng với công nghệ tiên tiến. Hệ thống theo dõi hành trình realtime, tối ưu chi phí vận chuyển và nâng cao hiệu quả logistics toàn diện.</p>
+   
+
+    <section class="container-fluid">
+        <h1 class="text-center mt-5 display-3 fw-bold">Sản phẩm và <span class="theme-text">Dịch vụ</span></h1>
+        <hr class="mx-auto mb-5 w-25">
+        <div class="row mb-5">
+            <div class="col-12 col-sm-6 col-md-3 m-auto">
+                <div class="card shadow">
+                    <img src="assets/images/logistics.png" alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="text-center">Logistics</h3>
+                        <hr class="mx-auto w-75">
+                        <p>Giải pháp vận chuyển thông minh, quản lý kho bãi hiện đại, tối ưu hóa chuỗi cung ứng với công nghệ tiên tiến. Hệ thống theo dõi hành trình realtime, tối ưu chi phí vận chuyển và nâng cao hiệu quả logistics toàn diện.</p>
+                        </div>
+                </div>
             </div>
-            <div class="reason-item">
-                <div class="reason-number">2</div>
-                <h3>E-wallet</h3>
-                <p>Ví điện tử bảo mật cao cấp với công nghệ mã hóa tiên tiến, hỗ trợ thanh toán nhanh chóng và an toàn. Tích hợp đa dạng dịch vụ tài chính, quản lý chi tiêu thông minh và bảo vệ thông tin người dùng tối đa.</p>
+            <div class="col-12 col-sm-6 col-md-3 m-auto">
+                <div class="card shadow">
+                    <img src="assets/images/wallet.png" alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="text-center">E-wallet</h3>
+                        <hr class="mx-auto w-75">
+                        <p>Ví điện tử bảo mật cao cấp với công nghệ mã hóa tiên tiến, hỗ trợ thanh toán nhanh chóng và an toàn. Tích hợp đa dạng dịch vụ tài chính, quản lý chi tiêu thông minh và bảo vệ thông tin người dùng tối đa.</p>
+                    </div>
+                </div>
+                <!-- card ends here -->
             </div>
-            <div class="reason-item">
-                <div class="reason-number">3</div>
-                <h3>E-commerce</h3>
-                <p>Nền tảng thương mại điện tử đa kênh tích hợp, kết nối người bán và người mua một cách thông minh. Hỗ trợ đa dạng phương thức thanh toán, quản lý đơn hàng tự động và tối ưu trải nghiệm mua sắm trực tuyến.</p>
+            <!-- col ends here -->
+            <div class="col-12 col-sm-6 col-md-3 m-auto">
+                <!-- card starts here -->
+                <div class="card shadow">
+                    <img src="assets/images/ecommerce.png" alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="text-center">E-commerce</h3>
+                        <hr class="mx-auto w-75">
+                        <p>Nền tảng thương mại điện tử đa kênh tích hợp, kết nối người bán và người mua một cách thông minh. Hỗ trợ đa dạng phương thức thanh toán, quản lý đơn hàng tự động và tối ưu trải nghiệm mua sắm trực tuyến.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    </div>
+
+
     <!-- Leadership Team Section -->
     <section id="leadership-team" class="leadership-team-section">
         <div class="container">
@@ -243,5 +262,8 @@
             });
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
 </body>
 </html>

@@ -15,7 +15,9 @@
       box-sizing: border-box;
     }
 
-    
+    body{
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
     /* Animated Background */
     .bg-animation {
       position: fixed;
@@ -107,7 +109,7 @@
     }
 
     .left h1 {
-      font-family: 'Orbitron', monospace;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       font-size: clamp(40px, 8vw, 72px);
       font-weight: 900;
       background: linear-gradient(45deg, #22c55e, #16a34a, #15803d, #4ade80);
@@ -803,7 +805,7 @@
         <i class="fas fa-robot"></i> AI POWERED ANALYTICS
       </div>
       
-      <h1>EMC<br>DẪN ĐẦU XU HƯỚNG</h1>
+      <h1>EMC<br>DẪN ĐẦU <br> XU HƯỚNG</h1>
       <div class="subtitle">Thông minh • Nhanh chóng • Chính xác</div>
       
       <p>Biến dòng dữ liệu khô khan thành những insight có giá trị với sức mạnh AI. Khám phá giải pháp Business Intelligence & Machine Learning để đưa ra quyết định nhanh, chính xác và hiệu quả nhất.</p>
