@@ -54,5 +54,16 @@
                 return false;
             }
         }
+        //thêm liên hệ
+        public function getthemLH($tenKH,$emailKH,$sdt,$noidung,$ngaytao,$trangthai){
+            $p = new ViewContact();
+            $con = $p->themLH($tenKH,$emailKH,$sdt,$noidung,$ngaytao,$trangthai);
+            if($con){
+                return $con;
+            }else{
+                echo 'Lỗi thêm';
+                return false;
+            }
+        }
     }
 ?>

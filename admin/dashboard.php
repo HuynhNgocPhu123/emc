@@ -196,7 +196,7 @@ if (isset($_REQUEST["news"])) {
     new Chart(document.getElementById('viewChart'), {
       type: 'line',
       data: {
-        labels: ['Th1', 'Th2', 'Th3', 'Th4', 'Th5', 'Th6', 'Th7', 'Th8', 'Th9', 'Th10', 'Th11', 'Th12'],
+        labels: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9', 'T10', 'T11', 'T12'],
         datasets: [{
           label: 'Lượt xem',
           data: [12000, 15000, 18000, 22000, 21000, 25000, 27000, 29000, 30000, 28000, 26000, 31000],

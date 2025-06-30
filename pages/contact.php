@@ -1,5 +1,20 @@
 <?php
-// ... giữ nguyên nếu có PHP ở đầu file ...
+    include_once("controller/getcontact.php");
+    $p = new getviewcontact();
+    if(isset($_REQUEST["btn_lienhe"])){
+    $hoten = $_REQUEST["name"];
+    $email = $_REQUEST["email"];
+    $sdt = $_REQUEST["phone"];
+    $noidung = $_REQUEST["message"];
+    $ngaytao = date("Y-m-d");  // ✅ Lấy ngày hiện tại
+    $con = $p -> getthemLH($hoten, $email, $sdt, $noidung, $ngaytao, 0);
+    if($con == true){
+        echo '<script>alert("Gửi liên hệ thành công! Chúng tôi sẽ liên hệ bạn sớm nhất.")</script>';
+        echo '<script>window.location.href="index.php?contact"</script>';
+    } else {
+        echo '<script>alert("Gửi liên hệ thất bại!")</script>';
+    }
+}
 ?>
 <div class="container py-5">
     <div class="row justify-content-center align-items-stretch g-4">
@@ -23,7 +38,7 @@
                         <span><strong>Email:</strong> info@emcgroup.com.vn</span>
                     </li>
                 </ul>
-                <form class="mt-auto" id="contactForm">
+                <form class="mt-auto" id="contactForm" method="POST">
                     <div class="mb-3">
                         <input type="text" class="form-control rounded-3" name="name" placeholder="Họ và tên" required>
                     </div>
@@ -36,7 +51,7 @@
                     <div class="mb-3">
                         <textarea class="form-control rounded-3" name="message" placeholder="Nội dung" rows="4" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-success w-100 rounded-3 fw-bold">Gửi liên hệ</button>
+                    <button type="submit" class="btn btn-success w-100 rounded-3 fw-bold" name="btn_lienhe">Gửi liên hệ</button>
                 </form>
             </div>
         </div>
@@ -78,11 +93,5 @@
         </div>
     </div>
 </div>
-<script>
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert('Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi trong thời gian sớm nhất.');
-    this.reset();
-});
-</script>
+
 <!-- Đảm bảo đã include Bootstrap, FontAwesome ở header/footer -->

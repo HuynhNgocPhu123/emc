@@ -71,5 +71,25 @@
                 return false;
             }
         }
+
+        // thêm liên hệ
+        public function themLH($tenKH,$emailKH,$sdt,$noidung,$ngaytao,$trangthai){
+            $p = new clsketnoi();
+            $con = $p->moketnoi();
+            if($con){
+                $str ="INSERT INTO lienhe(tenKH, emailKH, sdt, noidung, ngaytao, trangthaixuly)
+                       VALUES ('$tenKH', '$emailKH', '$sdt', '$noidung', CURDATE(), 0)";
+                $tbl = $con ->query($str);
+                if($tbl){
+                    return $tbl;
+                }else{
+                    echo 'Lỗi truy vấn';
+                    return false;
+                }
+            }else{
+                echo 'Loi Ket noi CSDL';
+                return false;
+            }
+        }
     }    
 ?>
