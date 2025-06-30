@@ -1,0 +1,382 @@
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 850px;
+      height: 520px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 20px;
+      display: flex;
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    }
+
+    .left-panel {
+    flex: 1;
+    
+    padding: 50px 40px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    }
+
+    .left-panel .branding {
+    text-align: left;
+    }
+
+    .left-panel .logo {
+    width: 160px;
+    margin-bottom: 30px;
+    }
+
+    .left-panel h2 {
+    font-size: 26px;
+    font-weight: 600;
+    color: #f1c40f; /* Vàng EMC */
+    margin-bottom: 16px;
+    }
+
+    .left-panel p {
+    font-size: 15px;
+    color: #ccc;
+    line-height: 1.6;
+    }
+
+    .left-panel .social-icons {
+    margin-top: 30px;
+    display: flex;
+    gap: 18px;
+    }
+
+    .left-panel .social-icons a {
+    color: #f1c40f;
+    font-size: 18px;
+    transition: color 0.3s ease;
+    }
+
+    .left-panel .social-icons a:hover {
+    color: #fff;
+    }
+
+    .right-panel {
+      width: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: white;
+    }
+
+    .right-panel h2 {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 5px;
+      color: #ddd;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #aaa;
+      color: white;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .form-group input::placeholder {
+      color: #ccc;
+    }
+
+    .terms {
+      display: flex;
+      align-items: center;
+      font-size: 0.8rem;
+      color: #ccc;
+      margin: 10px 0 20px;
+    }
+
+    .terms input {
+      margin-right: 8px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .btn button {
+      background: #e50914;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .btn button:hover {
+      background: #527cf9;
+    }
+
+    .btn a {
+      color: #ddd;
+      font-size: 0.9rem;
+      text-decoration: none;
+      margin-left: 15px;
+    }
+
+    .btn a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        height: auto;
+      }
+      .left-panel, .right-panel {
+        width: 100%;
+        padding: 30px 20px;
+      }
+    }
+    @keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeInUp 1s ease;
+}
+
+.container {
+  width: 850px;
+  height: 520px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  display: flex;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+  animation: zoomIn 0.6s ease-out;
+}
+
+.left-panel {
+  flex: 1;
+  padding: 50px 40px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+ 
+}
+
+.left-panel .branding {
+  text-align: left;
+  animation: fadeInUp 1s ease-in;
+}
+
+.left-panel .logo {
+  width: 160px;
+  margin-bottom: 30px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.left-panel .logo:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2);
+}
+
+.left-panel h2 {
+  font-size: 26px;
+  font-weight: 600;
+  color: #f1c40f;
+  margin-bottom: 16px;
+}
+
+.left-panel p {
+  font-size: 15px;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.left-panel .social-icons {
+  margin-top: 30px;
+  display: flex;
+  gap: 18px;
+}
+
+.left-panel .social-icons a {
+  color: #f1c40f;
+  font-size: 18px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.left-panel .social-icons a:hover {
+  color: #fff;
+  transform: scale(1.2);
+}
+
+.right-panel {
+  width: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  animation: fadeInUp 1s ease;
+}
+
+.right-panel h2 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #8884;
+  padding-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 5px;
+  color: #ddd;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #aaa;
+  color: white;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+  border-bottom: 1px solid #f1c40f;
+}
+
+.form-group input::placeholder {
+  color: #ccc;
+}
+
+.terms {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #ccc;
+  margin: 10px 0 20px;
+}
+
+.terms input {
+  margin-right: 8px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn button {
+  background: #f1c40f;
+  color: black;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 0 10px rgba(241, 196, 15, 0.5);
+}
+
+.btn button:hover {
+  box-shadow: 0 0 20px rgba(241, 196, 15, 0.8);
+  transform: scale(1.05);
+}
+
+.btn a {
+  color: #ddd;
+  font-size: 0.9rem;
+  text-decoration: none;
+  margin-left: 15px;
+  transition: color 0.3s;
+}
+
+.btn a:hover {
+  text-decoration: underline;
+  color: #f1c40f;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+    width: 95%;
+    margin: 20px;
+  }
+
+  .left-panel, .right-panel {
+    width: 100%;
+    padding: 30px 20px;
+  }
+}

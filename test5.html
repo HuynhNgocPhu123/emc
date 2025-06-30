@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lĩnh Vực Hoạt Động - Phát Triển Bền Vững</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #2d5016;
+            background: linear-gradient(135deg, #0a1f0f 0%, #1a3d0a 50%, #2d5016 100%);
+        }
+
+        /* Advanced Banner */
+        .banner {
+            height: 100vh;
+            background: radial-gradient(ellipse at center top, #0d4d1a 0%, #0a2f10 30%, #051805 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated geometric shapes */
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                conic-gradient(from 0deg at 20% 30%, rgba(76, 175, 80, 0.15) 0deg, transparent 60deg),
+                conic-gradient(from 180deg at 80% 70%, rgba(129, 199, 132, 0.1) 0deg, transparent 120deg),
+                radial-gradient(circle at 60% 40%, rgba(46, 125, 50, 0.2) 0%, transparent 50%);
+            animation: rotateBackground 20s linear infinite;
+        }
+
+        @keyframes rotateBackground {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        /* Floating geometric particles */
+        .geo-particle {
+            position: absolute;
+            border: 2px solid rgba(129, 199, 132, 0.3);
+            animation: floatGeometric 5s ease-in-out infinite;
+        }
+
+        .geo-particle:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 15%;
+            left: 10%;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            background: linear-gradient(45deg, rgba(76, 175, 80, 0.2), transparent);
+            animation-delay: 0s;
+        }
+
+        .geo-particle:nth-child(2) {
+            width: 80px;
+            height: 80px;
+            top: 70%;
+            right: 20%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(129, 199, 132, 0.15), transparent);
+            animation-delay: 1.5s;
+        }
+
+        .geo-particle:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 20%;
+            left: 15%;
+            transform: rotate(45deg);
+            background: linear-gradient(135deg, rgba(165, 214, 167, 0.2), transparent);
+            animation-delay: 3s;
+        }
+
+        .geo-particle:nth-child(4) {
+            width: 120px;
+            height: 40px;
+            top: 40%;
+            right: 10%;
+            border-radius: 20px;
+            background: linear-gradient(90deg, rgba(76, 175, 80, 0.1), transparent);
+            animation-delay: 2s;
+        }
+
+        @keyframes floatGeometric {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg) scale(1);
+                opacity: 0.7;
+            }
+            25% { 
+                transform: translateY(-30px) rotate(90deg) scale(1.1);
+                opacity: 1;
+            }
+            50% { 
+                transform: translateY(-60px) rotate(180deg) scale(0.9);
+                opacity: 0.8;
+            }
+            75% { 
+                transform: translateY(-30px) rotate(270deg) scale(1.05);
+                opacity: 0.9;
+            }
+        }
+
+        /* Enhanced Banner Content */
+        .banner-content {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            max-width: 900px;
+            padding: 60px 40px;
+            background: rgba(13, 40, 24, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            border: 1px solid rgba(129, 199, 132, 0.2);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .banner-subtitle {
+            font-size: 1.2rem;
+            color: #81c784;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: slideInLeft 1.2s ease-out 0.5s both;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .banner h1 {
+            font-size: 4.5rem;
+            background: linear-gradient(45deg, #4caf50, #81c784, #a5d6a7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            animation: slideInUp 1s ease-out 0.8s both;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            line-height: 1.2;
+        }
+
+        .banner-description {
+            font-size: 1.3rem;
+            color: #a5d6a7;
+            margin-bottom: 2.5rem;
+            animation: slideInRight 1.2s ease-out 1s both;
+            opacity: 0;
+        }
+
+        .banner-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.3s both;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #4caf50;
+            display: block;
+            animation: countUp 2s ease-out 1.5s both;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #81c784;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .banner-cta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.6s both;
+        }
+
+        .cta-btn {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-primary {
+            background: linear-gradient(45deg, #4caf50, #66bb6a);
+            color: white;
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            border: 2px solid #4caf50;
+            color: #4caf50;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .cta-primary:hover {
+            box-shadow: 0 12px 35px rgba(76, 175, 80, 0.6);
+        }
+
+        .cta-secondary:hover {
+            background: #4caf50;
+            color: white;
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes countUp {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Container chính */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Advanced Section styling */
+        .section {
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section:nth-child(even) {
+            background: 
+                linear-gradient(135deg, rgba(26, 77, 46, 0.9) 0%, rgba(45, 80, 22, 0.9) 100%),
+                radial-gradient(circle at 70% 20%, rgba(76, 175, 80, 0.1) 0%, transparent 50%);
+        }
+
+        .section:nth-child(odd) {
+            background: 
+                linear-gradient(135deg, rgba(13, 40, 24, 0.95) 0%, rgba(26, 61, 10, 0.95) 100%),
+                radial-gradient(circle at 30% 80%, rgba(129, 199, 132, 0.1) 0%, transparent 50%);
+        }
+
+        /* Complex section layouts */
+        .section-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(80px);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .section-content.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Multi-column layouts for variety */
+        .section-content.triple-layout {
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .section-content.asymmetric {
+            grid-template-columns: 2fr 1fr;
+        }
+
+        .section-content.reverse {
+            direction: rtl;
+        }
+
+        .section-content.reverse > * {
+            direction: ltr;
+        }
+
+        /* Enhanced text content */
+        .text-content {
+            position: relative;
+            padding: 40px;
+            background: rgba(13, 40, 24, 0.4);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            border: 1px solid rgba(129, 199, 132, 0.2);
+        }
+
+        .text-content::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #4caf50, #81c784, #a5d6a7, #4caf50);
+            border-radius: 25px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .text-content:hover::before {
+            opacity: 0.3;
+        }
+
+        .section-number {
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #4caf50, #66bb6a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .text-content h2 {
+            font-size: 2.8rem;
+            background: linear-gradient(45deg, #4caf50, #81c784);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .text-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4caf50, #81c784);
+            transition: width 0.8s ease-out 0.3s;
+        }
+
+        .section-content.animate .text-content h2::after {
+            width: 100px;
+        }
+
+        .text-content p {
+            font-size: 1.2rem;
+            color: #a5d6a7;
+            line-height: 1.9;
+            margin-bottom: 2rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .feature-list li {
+            padding: 10px 0 10px 30px;
+            position: relative;
+            color: #a5d6a7;
+            font-size: 1.1rem;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .text-content .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #4caf50, #66bb6a);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.4s ease;
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .text-content .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .text-content .btn:hover::before {
+            left: 100%;
+        }
+
+        .text-content .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(76, 175, 80, 0.5);
+        }
+
+        /* Enhanced image content */
+        .image-content {
+            position: relative;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+            transition: all 0.4s ease;
+        }
+
+        .image-content:hover {
+            transform: scale(1.05) rotateY(5deg);
+        }
+
+        .image-content img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .image-content:hover img {
+            transform: scale(1.1);
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(76, 175, 80, 0.3), rgba(129, 199, 132, 0.3));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-content:hover .image-overlay {
+            opacity: 1;
+        }
+
+        .overlay-text {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+        }
+
+        .image-content:hover .overlay-text {
+            transform: translateY(0);
+        }
+
+        /* Card layouts for some sections */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .info-card {
+            background: rgba(13, 40, 24, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(129, 199, 132, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(76, 175, 80, 0.2);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #4caf50, #66bb6a);
+            border-radius: 50%;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            color: #81c784;
+            margin-bottom: 15px;
+        }
+
+        .card-text {
+            color: #a5d6a7;
+            line-height: 1.6;
+        }
+
+        /* Decorative elements */
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 300%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 30% 50%, rgba(76, 175, 80, 0.05) 0%, transparent 70%),
+                radial-gradient(ellipse at 70% 80%, rgba(129, 199, 132, 0.05) 0%, transparent 70%);
+            animation: waveFlow 15s linear infinite;
+        }
+
+        @keyframes waveFlow {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(100px); }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(76, 175, 80, 0.2);
+            z-index: 1000;
+        }
+
+        .scroll-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #4caf50, #81c784, #a5d6a7);
+            width: 0%;
+            transition: width 0.1s ease;
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .section-content.triple-layout {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .banner h1 {
+                font-size: 3rem;
+            }
+            
+            .banner-description {
+                font-size: 1.1rem;
+            }
+            
+            .banner-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .banner-cta {
+                flex-direction: column;
+            }
+            
+            .section-content,
+            .section-content.asymmetric,
+            .section-content.triple-layout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .text-content h2 {
+                font-size: 2.2rem;
+            }
+
+            .text-content {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-indicator">
+        <div class="scroll-progress" id="scrollProgress"></div>
+    </div>
+
+    <!-- Enhanced Banner -->
+    <section class="banner">
+        <div class="geo-particle"></div>
+        <div class="geo-particle"></div>
+        <div class="geo-particle"></div>
+        <div class="geo-particle"></div>
+        
+        <div class="banner-content">
+            <div class="banner-subtitle">Tương lai bền vững</div>
+            <h1>Phát Triển Xanh<br>Cho Thế Giới</h1>
+            <p class="banner-description">
+                Chúng tôi dẫn đầu trong việc tạo ra những giải pháp môi trường tiên tiến, 
+                kết hợp công nghệ hiện đại với trách nhiệm bảo vệ hành tinh cho tương lai.
+            </p>
+            
+            <div class="banner-stats">
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Dự án hoàn thành</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50M</span>
+                    <span class="stat-label">Tấn CO₂ giảm</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">15</span>
+                    <span class="stat-label">Năm kinh nghiệm</span>
+                </div>
+            </div>
+            
+            <div class="banner-cta">
+                <a href="#" class="cta-btn cta-primary">Khám phá ngay</a>
+                <a href="#" class="cta-btn cta-secondary">Tư vấn miễn phí</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 1: Năng lượng tái tạo -->
+    <section class="section">
+        <div class="container">
+            <div class="section-content">
+                <div class="text-content">
+                    <div class="section-number">01</div>
+                    <h2>Năng Lượng Tái Tạo</h2>
+                    <p>Chúng tôi tiên phong trong việc phát triển và ứng dụng các giải pháp năng lượng tái tạo hiện đại nhất. Từ hệ thống điện mặt trời công suất lớn đến trang trại gió offshore, chúng tôi cam kết cung cấp năng lượng sạch cho tương lai bền vững.</p>
+                    
+                    <ul class="feature-list">
+                        <li>Hệ thống điện mặt trời công suất cao</li>
+                        <li>Trang trại điện gió onshore & offshore</li>
+                        <li>Công nghệ lưu trữ năng lượng tiên tiến</li>
+                        <li>Mạng lưới điện thông minh</li>
+                    </ul>
+                    
+                    <a href="#" class="btn">Tìm hiểu chi tiết</a>
+                </div>
+                <div class="image-content">
+                    <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&h=400&fit=crop" alt="Năng lượng tái tạo">
+                    <div class="image-overlay">
+                        <div class="overlay-text">Năng lượng tương lai</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Nông nghiệp hữu cơ - Triple layout -->
+    <section class="section">
+        <div class="container">
+            <div class="section-content triple-layout">
+                <div class="text-content">
+                    <div class="section-number">02</div>
+                    <h2>Nông Nghiệp Hữu Cơ</h2>
+                    <p>Hệ thống nông nghiệp bền vững với công nghệ IoT và AI, đảm bảo chất lượng sản phẩm và bảo vệ môi trường.</p>
+                    <a href="#" class="btn">Khám phá</a>
+                </div>
+                
+                <div class="image-content">
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&h=400&fit=crop" alt="Nông nghiệp hữu cơ">
+                    <div class="image-overlay">
+                        <div class="overlay-text">Canh tác thông minh</div>
+                    </div>
+                </div>
+                
+                <div class="card-grid">
+                    <div class="info-card">
+                        <div class="card-icon">🌱</div>
+                        <div class="card-title">Giống cây</div>
+                        <div class="card-text">Phát triển giống cây chống chịu, năng suất cao</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-icon">💧</div>
+                        <div class="card-title">Tưới tiết kiệm</div>
+                        <div class="card-text">Hệ thống tưới nhỏ giọt thông minh</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Quản lý chất thải - Asymmetric -->
+    <section class="section">
+        <div class="container">
+            <div class="section-content asymmetric reverse">
+                <div class="image-content">
+                    <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=600&h=400&fit=crop" alt="Quản lý chất thải">
+                    <div class="image-overlay">
+                        <div class="overlay-text">Tái chế thông minh</div>
+                    </div>
+                </div>
+                <div class="text-content">
+                    <div class="section-number">03</div>
+                    <h2>Quản Lý Chất Thải</h2>
+                    <p>Hệ thống quản lý chất thải thông minh với AI và robotics, từ phân loại tự động đến tái chế hoàn toàn.</p>
+                    
+                    <ul class="feature-list">
+                        <li>Robot phân loại rác thải tự động</li>
+                        <li>Công nghệ tái chế plastic thành nhiên liệu</li>
+                        <li>Hệ thống biogas từ rác hữu cơ</li>
+                        <li>Ứng dụng theo dõi chất thải</li>
+                    </ul>
+                    
+                    <a href="#" class="btn">Xem công nghệ</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Bảo tồn rừng -->
+    <section class="section">
+        <div class="container">
+            <div class="section-content">
+                <div class="text-content">
+                    <div class="section-number">04</div>
+                    <h2>Bảo Tồn Rừng</h2>
+                    <p>Chương trình bảo vệ và phục hồi hệ sinh thái rừng với công nghệ giám sát vệ tinh và drone, kết hợp với kinh tế rừng bền vững để tạo sinh kế cho cộng đồng địa phương.</p>
+                    
+                    <ul class="feature-list">
+                        <li>Giám sát rừng bằng vệ tinh 24/7</li>
+                        <li>Hệ thống cảnh báo cháy rừng sớm</li>
+                        <li>Chương trình trồng rừng cộng đồng</li>
+                        <li>Phát triển du lịch sinh thái</li>
+                    </ul>
+                    
+                    <a href="#" class="btn">Tham gia bảo vệ</a>
+                </div>
+                <div class="image-content">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop" alt="Bảo tồn rừng">
+                    <div class="image-overlay">
+                        <div class="overlay-text">Lá phổi xanh</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Giao thông xanh - Triple layout -->
+    <section class="section">
+        <div class="container">
+            <div class="section-content triple-layout">
+                <div class="image-content">
+                    <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=600&h=400&fit=crop" alt="Giao thông xanh">
+                    <div class="image-overlay">
+                        <div class="overlay-text">Vận chuyển sạch</div>
+                    </div>
+                </div>
+                
+                <div class="text-content">
+                    <div class="section-number">05</div>
+                    <h2>Giao Thông Xanh</h2>
+                    <p>Hệ thống giao thông bền vững với xe điện, hydro và giao thông công cộng thông minh.</p>
+                    <a href="#" class="btn">Trải nghiệm</a>
+                </div>
+                
+                <div class="card-grid">
+                    <div class="info-card">
+                        <div class="card-icon">🚌</div>
+                        <div class="card-title">Xe buýt điện</div>
+                        <div class="card-text">Đội xe buýt 100% điện, không khí thải</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-icon">🚲</div>
+                        <div class="card-title">Bike sharing</div>
+                        <div class="card-text">Hệ thống chia sẻ xe đạp thông minh</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-icon">⚡</div>
+                        <div class="card-title">Trạm sạc nhanh</div>
+                        <div class="card-text">Mạng lưới trạm sạc xe điện toàn quốc</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Xây dựng xanh - Asymmetric -->
+    <section class="section">
+        <div class="container">
+            <div class="section-content asymmetric">
+                <div class="text-content">
+                    <div class="section-number">06</div>
+                    <h2>Xây Dựng Xanh</h2>
+                    <p>Thiết kế và xây dựng các công trình thông minh với vật liệu tái chế, năng lượng tái tạo và hệ thống quản lý tự động giúp tiết kiệm 70% năng lượng so với công trình truyền thống.</p>
+                    
+                    <ul class="feature-list">
+                        <li>Vật liệu xây dựng từ rác thải tái chế</li>
+                        <li>Hệ thống điều hòa năng lượng mặt trời</li>
+                        <li>Tường xanh và vườn trên mái</li>
+                        <li>Smart Building Management System</li>
+                    </ul>
+                    
+                    <a href="#" class="btn">Xem dự án</a>
+                </div>
+                <div class="image-content">
+                    <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=600&h=400&fit=crop" alt="Xây dựng xanh">
+                    <div class="image-overlay">
+                        <div class="overlay-text">Kiến trúc tương lai</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Giáo dục môi trường -->
+    <section class="section">
+        <div class="container">
+            <div class="section-content reverse">
+                <div class="image-content">
+                    <img src="https://images.unsplash.com/photo-1427348693976-99e4aca06bf9?w=600&h=400&fit=crop" alt="Giáo dục môi trường">
+                    <div class="image-overlay">
+                        <div class="overlay-text">Giáo dục xanh</div>
+                    </div>
+                </div>
+                <div class="text-content">
+                    <div class="section-number">07</div>
+                    <h2>Giáo Dục Môi Trường</h2>
+                    <p>Nền tảng giáo dục trực tuyến với VR/AR, game hóa và thực tế ảo để nâng cao nhận thức về bảo vệ môi trường cho mọi lứa tuổi.</p>
+                    
+                    <ul class="feature-list">
+                        <li>Khóa học VR về biến đổi khí hậu</li>
+                        <li>Game mobile bảo vệ môi trường</li>
+                        <li>Workshop thực hành tại trường học</li>
+                        <li>Chứng chỉ môi trường quốc tế</li>
+                    </ul>
+                    
+                    <a href="#" class="btn">Đăng ký học</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Đổi mới công nghệ - Triple layout -->
+    <section class="section">
+        <div class="container">
+            <div class="section-content triple-layout">
+                <div class="text-content">
+                    <div class="section-number">08</div>
+                    <h2>Đổi Mới Công Nghệ</h2>
+                    <p>R&D center với AI, blockchain và quantum computing cho các giải pháp môi trường thế hệ mới.</p>
+                    <a href="#" class="btn">Nghiên cứu</a>
+                </div>
+                
+                <div class="card-grid">
+                    <div class="info-card">
+                        <div class="card-icon">🤖</div>
+                        <div class="card-title">AI Monitoring</div>
+                        <div class="card-text">AI giám sát chất lượng không khí real-time</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-icon">🔗</div>
+                        <div class="card-title">Blockchain</div>
+                        <div class="card-text">Truy xuất nguồn gốc carbon footprint</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-icon">⚛️</div>
+                        <div class="card-title">Quantum Tech</div>
+                        <div class="card-text">Mô phỏng khí hậu siêu chính xác</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-icon">🛰️</div>
+                        <div class="card-title">Satellite Data</div>
+                        <div class="card-text">Phân tích dữ liệu vệ tinh môi trường</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-icon">🧬</div>
+                        <div class="card-title">Biotech</div>
+                        <div class="card-text">Vi sinh vật xử lý ô nhiễm</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-icon">🌊</div>
+                        <div class="card-title">Ocean Tech</div>
+                        <div class="card-text">Robot làm sạch đại dương</div>
+                    </div>
+                </div>
+                
+                <div class="image-content">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=400&fit=crop" alt="Đổi mới công nghệ">
+                    <div class="image-overlay">
+                        <div class="overlay-text">Công nghệ tương lai</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Enhanced scroll progress indicator
+        window.addEventListener('scroll', function() {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.offsetHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+        });
+
+        // Enhanced animate sections on scroll with stagger effect
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('animate');
+                    }, index * 200);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-content').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Counter animation for banner stats
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = formatNumber(target);
+                    clearInterval(timer);
+                } else {
+                    element.textContent = formatNumber(Math.floor(current));
+                }
+            }, 20);
+        }
+
+        function formatNumber(num) {
+            if (num >= 1000000) {
+                return (num / 1000000).toFixed(0) + 'M';
+            } else if (num >= 1000) {
+                return (num / 1000).toFixed(0) + 'K';
+            }
+            return num.toString();
+        }
+
+        // Start counter animation when banner is visible
+        const bannerObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = document.querySelectorAll('.stat-number');
+                    const targets = [500, 50, 15];
+                    statNumbers.forEach((stat, index) => {
+                        animateCounter(stat, targets[index]);
+                    });
+                    bannerObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const bannerElement = document.querySelector('.banner');
+        if (bannerElement) {
+            bannerObserver.observe(bannerElement);
+        }
+
+        // Enhanced parallax effect
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.3;
+            
+            const banner = document.querySelector('.banner');
+            if (banner) {
+                banner.style.transform = `translateY(${rate}px)`;
+            }
+            
+            // Parallax for geometric particles
+            const particles = document.querySelectorAll('.geo-particle');
+            particles.forEach((particle, index) => {
+                const speed = 0.2 + (index * 0.1);
+                particle.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Interactive hover effects for cards
+        document.querySelectorAll('.info-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) rotateX(5deg)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) rotateX(0)';
+            });
+        });
+
+        // Smooth scrolling for CTA buttons
+        document.querySelectorAll('.cta-btn, .btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Add ripple effect
+                const ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255,255,255,0.3)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.left = '50%';
+                ripple.style.top = '50%';
+                ripple.style.width = '20px';
+                ripple.style.height = '20px';
+                ripple.style.marginLeft = '-10px';
+                ripple.style.marginTop = '-10px';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

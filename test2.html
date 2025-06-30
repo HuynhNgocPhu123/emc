@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNews - Tin Tức Công Nghệ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e8f5e8 25%, #f0f9ff 50%, #f8fafc 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating orbs animation */
+        .floating-orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(34, 197, 94, 0.1);
+            backdrop-filter: blur(10px);
+            animation: float 20s infinite linear;
+        }
+
+        .orb:nth-child(1) { width: 80px; height: 80px; top: 20%; left: 10%; animation-delay: 0s; }
+        .orb:nth-child(2) { width: 120px; height: 120px; top: 60%; right: 10%; animation-delay: -5s; }
+        .orb:nth-child(3) { width: 60px; height: 60px; top: 80%; left: 50%; animation-delay: -10s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-30px) rotate(120deg); }
+            66% { transform: translateY(15px) rotate(240deg); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(34, 197, 94, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #059669, #10b981, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 4px 8px rgba(34, 197, 94, 0.3);
+        }
+
+        .tagline {
+            text-align: center;
+            color: #374151;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        /* Navigation */
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            border-radius: 50px;
+            padding: 8px;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(34, 197, 94, 0.1);
+        }
+
+        .nav-tab {
+            padding: 1rem 2.5rem;
+            border: none;
+            background: transparent;
+            color: #6b7280;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 2;
+            font-size: 1rem;
+        }
+
+        .nav-tab.active {
+            color: white;
+            background: linear-gradient(45deg, #059669, #10b981);
+            box-shadow: 0 8px 32px rgba(34, 197, 94, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-tab:hover:not(.active) {
+            color: #059669;
+            transform: translateY(-1px);
+        }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .main-content {
+            display: grid;
+            gap: 2rem;
+        }
+
+        /* Hero Article */
+        .hero-article {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            border-radius: 32px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 25px 50px -12px rgba(34, 197, 94, 0.15);
+        }
+
+        .hero-article:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 35px 70px -12px rgba(34, 197, 94, 0.25);
+        }
+
+        .hero-image {
+            height: 300px;
+            background: linear-gradient(135deg, #10b981, #059669, #34d399);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        }
+
+        .hero-content {
+            padding: 2.5rem;
+            position: relative;
+        }
+
+        .article-category {
+            background: linear-gradient(45deg, #059669, #10b981);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .article-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .article-excerpt {
+            color: #6b7280;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        /* Secondary Articles */
+        .secondary-articles {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .article-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(34, 197, 94, 0.15);
+            border-radius: 24px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(34, 197, 94, 0.08);
+        }
+
+        .article-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #059669, #10b981, #34d399, #6ee7b7);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .article-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.15);
+            background: rgba(255, 255, 255, 0.85);
+        }
+
+        .card-category {
+            background: rgba(34, 197, 94, 0.15);
+            color: #059669;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .card-excerpt {
+            color: #6b7280;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .card-meta {
+            color: #9ca3af;
+            font-size: 0.8rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .trending-section, .newsletter-section {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(34, 197, 94, 0.15);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .trending-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .trending-item:hover {
+            transform: translateX(8px);
+        }
+
+        .trending-number {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(45deg, #17a2a0, #4b96a2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgb(0, 0, 0);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .trending-content h4 {
+            color: rgb(0, 0, 0);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .trending-content p {
+            color: rgba(0, 0, 0, 0.6);
+            font-size: 0.8rem;
+        }
+
+        /* Newsletter */
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .newsletter-input {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            border-radius: 12px;
+            padding: 1rem;
+            color: #1f2937;
+            font-size: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .newsletter-input::placeholder {
+            color: #9ca3af;
+        }
+
+        .newsletter-btn {
+            background: linear-gradient(45deg, #059669, #10b981);
+            border: none;
+            border-radius: 12px;
+            padding: 1rem;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .secondary-articles {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .nav-tab {
+                padding: 0.8rem 1.5rem;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animation classes */
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-orbs">
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="logo">TechNews</h1>
+            <p class="tagline">Tin tức công nghệ hàng đầu Việt Nam</p>
+        </header>
+
+        <nav class="nav-container">
+            <div class="nav-tabs">
+                <button class="nav-tab active" data-tab="all">Tất Cả Tin</button>
+                <button class="nav-tab" data-tab="company">Tin Tức Công Ty</button>
+                <button class="nav-tab" data-tab="press">Thông Cáo Báo Chí</button>
+            </div>
+        </nav>
+
+        <!-- Tất Cả Tin -->
+        <div class="content-section active" id="all">
+            <div class="content-grid">
+                <main class="main-content">
+                    <article class="hero-article">
+                        <div class="hero-image"></div>
+                        <div class="hero-content">
+                            <span class="article-category">Công Nghệ</span>
+                            <h2 class="article-title">AI và Tương Lai Của Công Nghệ Việt Nam 2025</h2>
+                            <p class="article-excerpt">Khám phá những xu hướng công nghệ AI mới nhất và tác động của chúng đến thị trường Việt Nam trong năm 2025.</p>
+                            <div class="article-meta">
+                                <span>Nguyễn Văn An</span>
+                                <span>•</span>
+                                <span>2 giờ trước</span>
+                                <span>•</span>
+                                <span>5 phút đọc</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <div class="secondary-articles">
+                        <article class="article-card">
+                            <span class="card-category">Startup</span>
+                            <h3 class="card-title">Startup Fintech Việt Gọi Vốn Thành Công 50 Triệu USD</h3>
+                            <p class="card-excerpt">Một startup fintech tại TP.HCM vừa hoàn tất vòng gọi vốn Series B với mức định giá ấn tượng.</p>
+                            <div class="card-meta">Trần Thị Bình • 4 giờ trước</div>
+                        </article>
+
+                        <article class="article-card">
+                            <span class="card-category">E-commerce</span>
+                            <h3 class="card-title">Thương Mại Điện Tử Việt Nam Tăng Trưởng 25%</h3>
+                            <p class="card-excerpt">Báo cáo mới nhất cho thấy thị trường e-commerce Việt Nam tiếp tục duy trì đà tăng trưởng mạnh mẽ.</p>
+                            <div class="card-meta">Lê Minh Chí • 6 giờ trước</div>
+                        </article>
+
+                        <article class="article-card">
+                            <span class="card-category">Gaming</span>
+                            <h3 class="card-title">Game Mobile Việt Chinh Phục Thị Trường Quốc Tế</h3>
+                            <p class="card-excerpt">Một tựa game mobile do studio Việt Nam phát triển đã đạt 10 triệu lượt tải trong tháng đầu ra mắt.</p>
+                            <div class="card-meta">Phạm Văn Dũng • 8 giờ trước</div>
+                        </article>
+
+                        <article class="article-card">
+                            <span class="card-category">Blockchain</span>
+                            <h3 class="card-title">Chính Phủ Việt Nam Thí Điểm Blockchain Trong Giáo Dục</h3>
+                            <p class="card-excerpt">Dự án thí điểm ứng dụng công nghệ blockchain trong quản lý bằng cấp và chứng chỉ giáo dục.</p>
+                            <div class="card-meta">Hoàng Thị Ế • 10 giờ trước</div>
+                        </article>
+                    </div>
+                </main>
+
+                <aside class="sidebar">
+                    <section class="trending-section">
+                        <h3 class="section-title">🔥 Trending</h3>
+                        <div class="trending-item">
+                            <div class="trending-number">1</div>
+                            <div class="trending-content">
+                                <h4>VinAI Ra Mắt Mô Hình AI Mới</h4>
+                                <p>15.2k lượt xem</p>
+                            </div>
+                        </div>
+                        <div class="trending-item">
+                            <div class="trending-number">2</div>
+                            <div class="trending-content">
+                                <h4>Tesla Sẽ Mở Nhà Máy Tại Việt Nam</h4>
+                                <p>12.8k lượt xem</p>
+                            </div>
+                        </div>
+                        <div class="trending-item">
+                            <div class="trending-number">3</div>
+                            <div class="trending-content">
+                                <h4>5G Sẽ Phủ Sóng Toàn Quốc</h4>
+                                <p>9.5k lượt xem</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="newsletter-section">
+                        <h3 class="section-title">📧 Newsletter</h3>
+                        <p style="color: rgba(0, 0, 0, 0.7); margin-bottom: 1.5rem;">Nhận tin tức công nghệ mới nhất mỗi ngày</p>
+                        <form class="newsletter-form">
+                            <input type="email" class="newsletter-input" placeholder="Nhập email của bạn">
+                            <button type="submit" class="newsletter-btn">Đăng Ký Ngay</button>
+                        </form>
+                    </section>
+                </aside>
+            </div>
+        </div>
+
+        <!-- Tin Tức Công Ty -->
+        <div class="content-section" id="company">
+            <div class="content-grid">
+                <main class="main-content">
+                    <article class="hero-article">
+                        <div class="hero-image"></div>
+                        <div class="hero-content">
+                            <span class="article-category">Doanh Nghiệp</span>
+                            <h2 class="article-title">FPT Software Mở Rộng Hoạt Động Sang 5 Quốc Gia Mới</h2>
+                            <p class="article-excerpt">Công ty công nghệ hàng đầu Việt Nam thông báo kế hoạch mở rộng thị trường quốc tế với đầu tư 200 triệu USD.</p>
+                            <div class="article-meta">
+                                <span>Ban Biên Tập</span>
+                                <span>•</span>
+                                <span>1 giờ trước</span>
+                                <span>•</span>
+                                <span>7 phút đọc</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <div class="secondary-articles">
+                        <article class="article-card">
+                            <span class="card-category">Viettel</span>
+                            <h3 class="card-title">Viettel Đạt Doanh Thu 1 Tỷ USD Từ Thị Trường Quốc Tế</h3>
+                            <p class="card-excerpt">Tập đoàn Viettel công bố kết quả kinh doanh ấn tượng trong quý 4/2024.</p>
+                            <div class="card-meta">PR Team • 3 giờ trước</div>
+                        </article>
+
+                        <article class="article-card">
+                            <span class="card-category">Vingroup</span>
+                            <h3 class="card-title">VinFast Ký Hợp Đồng Xuất Khẩu 50.000 Xe Điện</h3>
+                            <p class="card-excerpt">Thương vụ xuất khẩu xe điện lớn nhất trong lịch sử ngành ô tô Việt Nam.</p>
+                            <div class="card-meta">Marketing Dept • 5 giờ trước</div>
+                        </article>
+
+                        <article class="article-card">
+                            <span class="card-category">Momo</span>
+                            <h3 class="card-title">Momo Triển Khai Dịch Vụ Thanh Toán AI</h3>
+                            <p class="card-excerpt">Ứng dụng thanh toán di động hàng đầu Việt Nam ra mắt tính năng AI mới.</p>
+                            <div class="card-meta">Tech Team • 7 giờ trước</div>
+                        </article>
+
+                        <article class="article-card">
+                            <span class="card-category">VNG</span>
+                            <h3 class="card-title">VNG Cloud Khai Trương Data Center Mới</h3>
+                            <p class="card-excerpt">Trung tâm dữ liệu thế hệ mới với công nghệ green computing tiên tiến.</p>
+                            <div class="card-meta">Corporate Comm • 9 giờ trước</div>
+                        </article>
+                    </div>
+                </main>
+
+                <aside class="sidebar">
+                    <section class="trending-section">
+                        <h3 class="section-title">🏢 Top Công Ty</h3>
+                        <div class="trending-item">
+                            <div class="trending-number">1</div>
+                            <div class="trending-content">
+                                <h4>FPT Software IPO Tại NASDAQ</h4>
+                                <p>25.1k lượt xem</p>
+                            </div>
+                        </div>
+                        <div class="trending-item">
+                            <div class="trending-number">2</div>
+                            <div class="trending-content">
+                                <h4>Grab Đầu Tư 500M USD Vào Việt Nam</h4>
+                                <p>18.7k lượt xem</p>
+                            </div>
+                        </div>
+                        <div class="trending-item">
+                            <div class="trending-number">3</div>
+                            <div class="trending-content">
+                                <h4>Shopee Mở Trung Tâm R&D Mới</h4>
+                                <p>14.3k lượt xem</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="newsletter-section">
+                        <h3 class="section-title">💼 Business News</h3>
+                        <p style="color: rgba(0, 0, 0, 0.7); margin-bottom: 1.5rem;">Cập nhật tin tức doanh nghiệp hàng ngày</p>
+                        <form class="newsletter-form">
+                            <input type="email" class="newsletter-input" placeholder="Email doanh nghiệp">
+                            <button type="submit" class="newsletter-btn">Theo Dõi</button>
+                        </form>
+                    </section>
+                </aside>
+            </div>
+        </div>
+
+        <!-- Thông Cáo Báo Chí -->
+        <div class="content-section" id="press">
+            <div class="content-grid">
+                <main class="main-content">
+                    <article class="hero-article">
+                        <div class="hero-image"></div>
+                        <div class="hero-content">
+                            <span class="article-category">Thông Cáo</span>
+                            <h2 class="article-title">Chính Phủ Công Bố Chiến Lược Chuyển Đổi Số Quốc Gia 2025-2030</h2>
+                            <p class="article-excerpt">Kế hoạch đầu tư 10 tỷ USD để xây dựng hạ tầng số và đào tạo nhân lực công nghệ cao cho Việt Nam.</p>
+                            <div class="article-meta">
+                                <span>Văn Phòng Chính Phủ</span>
+                                <span>•</span>
+                                <span>30 phút trước</span>
+                                <span>•</span>
+                                <span>10 phút đọc</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <div class="secondary-articles">
+                        <article class="article-card">
+                            <span class="card-category">Bộ TT&TT</span>
+                            <h3 class="card-title">Ra Mắt Nền Tảng Chính Phủ Điện Tử Thống Nhất</h3>
+                            <p class="card-excerpt">Hệ thống quản lý hành chính công trực tuyến tích hợp AI và blockchain.</p>
+                            <div class="card-meta">Press Office • 2 giờ trước</div>
+                        </article>
+
+                        <article class="article-card">
+                            <span class="card-category">VNPT</span>
+                            <h3 class="card-title">VNPT Ký Kết Hợp Tác Chiến Lược Với Google Cloud</h3>
+                            <p class="card-excerpt">Thỏa thuận hợp tác phát triển dịch vụ cloud computing cho doanh nghiệp Việt.</p>
+                            <div class="card-meta">VNPT Media • 4 giờ trước</div>
+                        </article>
+
+                        <article class="article-card">
+                            <span class="card-category">Samsung</span>
+                            <h3 class="card-title">Samsung Đầu Tư Thêm 3 Tỷ USD Vào Việt Nam</h3>
+                            <p class="card-excerpt">Kế hoạch mở rộng sản xuất chip bán dẫn và nghiên cứu AI tại Việt Nam.</p>
+                            <div class="card-meta">Samsung VN • 6 giờ trước</div>
+                        </article>
+
+                        <article class="article-card">
+                            <span class="card-category">Meta</span>
+                            <h3 class="card-title">Meta Công Bố Trung Tâm Dữ Liệu Đầu Tiên Tại Việt Nam</h3>
+                            <p class="card-excerpt">Đầu tư 2 tỷ USD xây dựng data center hiện đại nhất Đông Nam Á tại Đồng Nai.</p>
+                            <div class="card-meta">Meta Press • 8 giờ trước</div>
+                        </article>
+                    </div>
+                </main>
+
+                <aside class="sidebar">
+                    <section class="trending-section">
+                        <h3 class="section-title">📰 Press Releases</h3>
+                        <div class="trending-item">
+                            <div class="trending-number">1</div>
+                            <div class="trending-content">
+                                <h4>Apple Mở Apple Store Đầu Tiên Tại VN</h4>
+                                <p>45.8k lượt xem</p>
+                            </div>
+                        </div>
+                        <div class="trending-item">
+                            <div class="trending-number">2</div>
+                            <div class="trending-content">
+                                <h4>Microsoft Azure Chính Thức Có Mặt</h4>
+                                <p>32.4k lượt xem</p>
+                            </div>
+                        </div>
+                        <div class="trending-item">
+                            <div class="trending-number">3</div>
+                            <div class="trending-content">
+                                <h4>TikTok Mở Văn Phòng Khu Vực ASEAN</h4>
+                                <p>28.9k lượt xem</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="newsletter-section">
+                        <h3 class="section-title">📋 Press Kit</h3>
+                        <p style="color: rgba(0, 0, 0, 0.7); margin-bottom: 1.5rem;">Nhận thông cáo báo chí mới nhất</p>
+                        <form class="newsletter-form">
+                            <input type="email" class="newsletter-input" placeholder="Email báo chí">
+                            <button type="submit" class="newsletter-btn">Đăng Ký</button>
+                        </form>
+                    </section>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab functionality
+        const tabs = document.querySelectorAll('.nav-tab');
+        const sections = document.querySelectorAll('.content-section');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and sections
+                tabs.forEach(t => t.classList.remove('active'));
+                sections.forEach(s => s.classList.remove('active'));
+
+                // Add active class to clicked tab
+                tab.classList.add('active');
+
+                // Show corresponding section
+                const targetSection = document.getElementById(tab.dataset.tab);
+                targetSection.classList.add('active');
+            });
+        });
+
+        // Newsletter form handling
+        const forms = document.querySelectorAll('.newsletter-form');
+        forms.forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const input = form.querySelector('.newsletter-input');
+                const btn = form.querySelector('.newsletter-btn');
+                
+                // Simple validation
+                if (input.value && input.value.includes('@')) {
+                    btn.textContent = 'Đã Đăng Ký!';
+                    btn.style.background = 'linear-gradient(45deg, #4ecdc4, #44a08d)';
+                    input.value = '';
+                    
+                    setTimeout(() => {
+                        btn.textContent = btn.parentElement.parentElement.querySelector('.section-title').textContent.includes('Business') 
+                            ? 'Theo Dõi' 
+                            : btn.parentElement.parentElement.querySelector('.section-title').textContent.includes('Press') 
+                                ? 'Đăng Ký' 
+                                : 'Đăng Ký Ngay';
+                        btn.style.background = 'linear-gradient(45deg, #667eea, #764ba2)';
+                    }, 2000);
+                } else {
+                    input.style.borderColor = '#ff6b6b';
+                    input.setAttribute('placeholder', 'Vui lòng nhập email hợp lệ');
+                    
+                    setTimeout(() => {
+                        input.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                        input.setAttribute('placeholder', 'Nhập email của bạn');
+                    }, 3000);
+                }
+            });
+        });
+
+        // Add hover effects to articles
+        const articles = document.querySelectorAll('.hero-article, .article-card');
+        articles.forEach(article => {
+            article.addEventListener('mouseenter', () => {
+                article.style.transform = article.classList.contains('hero-article') 
+                    ? 'translateY(-8px) scale(1.02)' 
+                    : 'translateY(-5px)';
+            });
+            
+            article.addEventListener('mouseleave', () => {
+                article.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Trending items interaction
+        const trendingItems = document.querySelectorAll('.trending-item');
+        trendingItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Simulate view count increase
+                const viewCount = item.querySelector('p');
+                const currentViews = parseFloat(viewCount.textContent.replace('k lượt xem', ''));
+                const newViews = (currentViews + 0.1).toFixed(1);
+                viewCount.textContent = `${newViews}k lượt xem`;
+                
+                // Add a subtle flash effect
+                item.style.background = 'rgba(255, 255, 255, 0.1)';
+                setTimeout(() => {
+                    item.style.background = 'transparent';
+                }, 200);
+            });
+        });
+
+        // Dynamic background orbs
+        function createFloatingOrb() {
+            const orb = document.createElement('div');
+            orb.className = 'orb';
+            orb.style.width = Math.random() * 60 + 40 + 'px';
+            orb.style.height = orb.style.width;
+            orb.style.left = Math.random() * 100 + '%';
+            orb.style.top = Math.random() * 100 + '%';
+            orb.style.animationDelay = Math.random() * 20 + 's';
+            orb.style.animationDuration = (Math.random() * 10 + 15) + 's';
+            
+            document.querySelector('.floating-orbs').appendChild(orb);
+            
+            // Remove orb after animation
+            setTimeout(() => {
+                orb.remove();
+            }, 25000);
+        }
+
+        // Create new orbs periodically
+        setInterval(createFloatingOrb, 8000);
+
+        // Smooth scroll for better UX
+        document.documentElement.style.scrollBehavior = 'smooth';
+
+        // Add loading animation on page load
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transform = 'translateY(20px)';
+            document.body.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+                document.body.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+</body>
+</html>

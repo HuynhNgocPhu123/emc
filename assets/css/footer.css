@@ -1,0 +1,64 @@
+  .footer {
+    background-color: #f6fdf9;
+    border-top: 1px solid #e0f2f1;
+    font-family: 'Mulish', sans-serif;
+  }
+
+  .footer h5 {
+    color: #2E7D32;
+    margin-bottom: 1rem;
+  }
+
+  .footer-link {
+    display: block;
+    margin-bottom: 8px;
+    color: #2E7D32;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-link:hover {
+    color: #1B5E20;
+    text-decoration: underline;
+  }
+
+  .social-icon {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 18px;
+    color: #2E7D32;
+    transition: color 0.3s;
+  }
+
+  .social-icon:hover {
+    color: #1B5E20;
+  }
+   .subscribe-form .form-control {
+    border-radius: 25px 0 0 25px;
+    border: 1px solid #ccc;
+    padding: 0.5rem 1rem;
+  }
+
+  .subscribe-form .btn {
+    border-radius: 0 25px 25px 0;
+    padding: 0.5rem 1rem;
+  }
+
+  .social-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #00e5e0;
+    color: white;
+    border-radius: 50%;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+  }
+
+  .social-circle:hover {
+    background-color: #00c9c3;
+    color: #fff;
+  }

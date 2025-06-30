@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenNews - Tin Tức Xanh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #ecfdf5 100%);
+            color: #1f2937;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Pattern */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.03;
+            background-image: 
+                radial-gradient(circle at 25% 25%, #10b981 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, #34d399 0%, transparent 50%);
+            animation: patternMove 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes patternMove {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(50px) translateY(-30px); }
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #10b981, #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .header-nav a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .header-nav a:hover {
+            color: #10b981;
+        }
+
+        /* Hero Banner - Asymmetric Design */
+        .hero-banner {
+            height: 70vh;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 2;
+            padding-right: 60px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981, #34d399);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            color: #1f2937;
+            position: relative;
+        }
+
+        .hero-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 120px;
+            height: 6px;
+            background: linear-gradient(135deg, #10b981, #34d399);
+            border-radius: 3px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #6b7280;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-image {
+            width: 500px;
+            height: 400px;
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(16, 185, 129, 0.2);
+            transform: rotate(-5deg);
+        }
+
+        .hero-image::before {
+            content: '📰';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 120px;
+            opacity: 0.7;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #10b981, #34d399);
+            opacity: 0.1;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            right: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            bottom: 20%;
+            left: 5%;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 40px;
+            height: 40px;
+            top: 60%;
+            right: 30%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #1f2937;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #10b981, #34d399);
+            border-radius: 2px;
+        }
+
+        /* Filter Tabs - Modern Design */
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 8px;
+            border-radius: 60px;
+            border: 1px solid rgba(16, 185, 129, 0.1);
+            box-shadow: 0 10px 40px rgba(16, 185, 129, 0.1);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .filter-btn {
+            padding: 16px 32px;
+            background: transparent;
+            border: none;
+            color: #6b7280;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        .filter-btn:hover:not(.active) {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
+        /* News Grid - Masonry Style */
+        .news-container {
+            margin-top: 80px;
+        }
+
+        .news-grid {
+            display: none;
+            columns: 3;
+            column-gap: 40px;
+            margin-top: 40px;
+        }
+
+        .news-grid.active {
+            display: block;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            break-inside: avoid;
+            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.05);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.15);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0, #6ee7b7);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-image::before {
+            content: attr(data-icon);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 60px;
+            opacity: 0.7;
+        }
+
+        .news-content {
+            padding: 30px;
+        }
+
+        .news-category {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981, #34d399);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+        }
+
+        .news-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .news-excerpt {
+            color: #6b7280;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(16, 185, 129, 0.1);
+        }
+
+        .news-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #374151;
+            font-weight: 600;
+        }
+
+        .news-author::before {
+            content: '👤';
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .news-time {
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        /* Featured Cards - Special Layout */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .featured-main {
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.05);
+        }
+
+        .featured-main .news-image {
+            height: 350px;
+        }
+
+        .featured-main .news-title {
+            font-size: 2rem;
+        }
+
+        .featured-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 12px 40px rgba(16, 185, 129, 0.12);
+        }
+
+        .sidebar-card .news-title {
+            font-size: 1.1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .news-grid {
+                columns: 2;
+            }
+            
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 20px;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .hero-banner {
+                grid-template-columns: 1fr;
+                padding: 0 20px;
+                height: auto;
+                gap: 40px;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .filter-tabs {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .news-grid {
+                columns: 1;
+            }
+
+            .main-content {
+                padding: 60px 20px;
+            }
+        }
+
+        /* Loading Animation */
+        .news-card {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .news-card:nth-child(1) { animation-delay: 0.1s; }
+        .news-card:nth-child(2) { animation-delay: 0.2s; }
+        .news-card:nth-child(3) { animation-delay: 0.3s; }
+        .news-card:nth-child(4) { animation-delay: 0.4s; }
+        .news-card:nth-child(5) { animation-delay: 0.5s; }
+        .news-card:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">GreenNews</div>
+            <nav class="header-nav">
+                <a href="#home">Trang Chủ</a>
+                <a href="#about">Giới Thiệu</a>
+                <a href="#contact">Liên Hệ</a>
+                <a href="#search">🔍</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        
+        <div class="hero-content">
+            
+            <h1 class="hero-title">Khám Phá<br>Thế Giới Tin Tức</h1>
+            <p class="hero-subtitle">Cập nhật những thông tin mới nhất, chính xác và đáng tin cậy từ mọi lĩnh vực trong cuộc sống</p>
+        
+            </a>
+        </div>
+        
+        <div class="hero-visual">
+            <div class="hero-image"></div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content" id="news">
+        <div class="section-header">
+            <h2 class="section-title">Tin Nổi Bật</h2>
+            
+            <!-- Filter Tabs -->
+            <div class="filter-tabs">
+                <button class="filter-btn active" onclick="showNews('all')">Tất Cả Tin</button>
+                <button class="filter-btn" onclick="showNews('company')">Tin Tức Công Ty</button>
+                <button class="filter-btn" onclick="showNews('press')">Thông Cáo Báo Chí</button>
+            </div>
+        </div>
+
+        <!-- Featured Section -->
+        <div class="featured-grid">
+            <div class="featured-main">
+                <div class="news-image" data-icon="🚀"></div>
+                <div class="news-content">
+                    <span class="news-category">Nổi Bật</span>
+                    <h3 class="news-title">Công Nghệ AI Tương Lai Thay Đổi Cách Chúng Ta Sống</h3>
+                    <p class="news-excerpt">Những tiến bộ vượt bậc trong trí tuệ nhân tạo đang mở ra một kỷ nguyên mới cho nhân loại, từ y tế đến giáo dục, từ giao thông đến giải trí.</p>
+                    <div class="news-meta">
+                        <div class="news-author">Tech Editor</div>
+                        <div class="news-time">30 phút trước</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="featured-sidebar">
+                <div class="sidebar-card">
+                    <span class="news-category">Trending</span>
+                    <h4 class="news-title">Startup Việt Gọi Vốn Thành Công 100M USD</h4>
+                    <div class="news-time">1 giờ trước</div>
+                </div>
+                <div class="sidebar-card">
+                    <span class="news-category">Tech</span>
+                    <h4 class="news-title">Web 3.0 và Tương Lai Internet Phi Tập Trung</h4>
+                    <div class="news-time">2 giờ trước</div>
+                </div>
+                <div class="sidebar-card">
+                    <span class="news-category">Innovation</span>
+                    <h4 class="news-title">Năng Lượng Xanh - Xu Hướng Bền Vững 2025</h4>
+                    <div class="news-time">3 giờ trước</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- News Container -->
+        <div class="news-container">
+            <!-- All News -->
+            <div id="all-news" class="news-grid active">
+                <div class="news-card">
+                    <div class="news-image" data-icon="💡"></div>
+                    <div class="news-content">
+                        <span class="news-category">Khoa Học</span>
+                        <h3 class="news-title">Phát Hiện Mới Về Vật Liệu Siêu Dẫn Ở Nhiệt Độ Phòng</h3>
+                        <p class="news-excerpt">Các nhà khoa học vừa công bố khám phá về loại vật liệu siêu dẫn hoạt động ở nhiệt độ phòng, mở ra cách mạng trong ngành công nghệ.</p>
+                        <div class="news-meta">
+                            <div class="news-author">Science Reporter</div>
+                            <div class="news-time">4 giờ trước</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-image" data-icon="🌱"></div>
+                    <div class="news-content">
+                        <span class="news-category">Môi Trường</span>
+                        <h3 class="news-title">Giải Pháp Thông Minh Giảm Khí Thải Carbon</h3>
+                        <p class="news-excerpt">Công nghệ mới giúp các doanh nghiệp giảm tới 80% lượng khí thải carbon thông qua hệ thống AI tự động tối ưu hóa.</p>
+                        <div class="news-meta">
+                            <div class="news-author">Green Tech</div>
+                            <div class="news-time">5 giờ trước</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-image" data-icon="🏥"></div>
+                    <div class="news-content">
+                        <span class="news-category">Y Tế</span>
+                        <h3 class="news-title">Telemedicine - Cách Mạng Chăm Sóc Sức Khỏe Từ Xa</h3>
+                        <p class="news-excerpt">Dịch vụ y tế từ xa đang phát triển mạnh mẽ, giúp bệnh nhân tiếp cận được dịch vụ chăm sóc sức khỏe chất lượng cao mọi lúc mọi nơi.</p>
+                        <div class="news-meta">
+                            <div class="news-author">Health Writer</div>
+                            <div class="news-time">6 giờ trước</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-image" data-icon="🚗"></div>
+                    <div class="news-content">
+                        <span class="news-category">Giao Thông</span>
+                        <h3 class="news-title">Xe Điện Tự Lái Chuẩn Bị Được Thương Mại Hóa</h3>
+                        <p class="news-excerpt">Những chiếc xe điện tự lái thế hệ mới đã vượt qua các bài test an toàn và sẵn sàng ra mắt thị trường trong năm 2025.</p>
+                        <div class="news-meta">
+                            <div class="news-author">Auto Expert</div>
+                            <div class="news-time">8 giờ trước</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-image" data-icon="🎓"></div>
+                    <div class="news-content">
+                        <span class="news-category">Giáo Dục</span>
+                        <h3 class="news-title">VR và AR Thay Đổi Phương Pháp Học Tập Hiện Đại</h3>
+                        <p class="news-excerpt">Công nghệ thực tế ảo và thực tế tăng cường đang được ứng dụng rộng rãi trong giáo dục, tạo ra trải nghiệm học tập immersive.</p>
+                        <div class="news-meta">
+                            <div class="news-author">Education Tech</div>
+                            <div class="news-time">10 giờ trước</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-image" data-icon="🌐"></div>
+                    <div class="news-content">
+                        <span class="news-category">Internet</span>
+                        <h3 class="news-title">5G và 6G - Cuộc Cách Mạng Kết Nối Không Dây</h3>
+                        <p class="news-excerpt">Mạng 5G đang được triển khai toàn cầu trong khi các nhà nghiên cứu đã bắt đầu phát triển công nghệ 6G với tốc độ nhanh gấp 100 lần.</p>
+                        <div class="news-meta">
+                            <div class="news-author">Network Analyst</div>
+                            <div class="news-time">1 ngày trước</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Company News -->
+            <div id="company-news" class="news-grid">
+                <div class="news-card">
+                    <div class="news-image" data-icon="🏢"></div>
+                    <div class="news-content">
+                        <span class="news-category">Tuyển Dụng</span>
+                        <h3 class="news-title">Mở Rộng Đội Ngũ Phát Triển AI và Machine Learning</h3>
+                        <p class="news-excerpt">Chúng tôi đang tìm kiếm những tài năng xuất sắc trong lĩnh vực AI, ML để cùng xây dựng các sản phẩm công nghệ tiên tiến cho tương lai.</p>
+                        <div class="news-meta">
+                            <div class="news-author">HR Department</div>
+                            <div class="news-time">2 ngày trước</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-image" data-icon="🎯"></div>
+                    <div class="news-content">
+                        <span class="news-category">Thành Tựu</span>
+                        <h3 class="news-title">Cán Mốc 5 Triệu Người Dùng Hoạt Động Hàng Tháng</h3>
+                        <p class="news-excerpt">Sau 3 năm phát triển, nền tảng của chúng tôi đã chính thức đạt được mốc 5 triệu người dùng hoạt động hàng tháng với tỷ lệ tăng trưởng ấn tượng.</p>
+                        <div class="news-meta">
+                            <div class="news-author">Growth Team</div>
+                            <div class="news-time">1 tuần trước</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-image" data-icon="🚀"></div>
+                    <div class="news-content">
+                        <span class="news-category">Sản Phẩm</span>
+                        <h3 class="news-title">Ra Mắt Tính Năng Smart Analytics Cho Doanh Nghiệp</h3>
+                        <p class="news-excerpt">Tính năng phân tích thông minh mới giúp doanh nghiệp đưa ra quyết định dựa trên dữ liệu với độ chính xác cao và thời gian xử lý nhanh chóng.</p>
+                        <div class="news-meta">
+                            <div class="news-author">Product Team</div>
+                            <div class="news-time">2 tuần trước</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-image" data-icon="🌟"></div>
+                    <div class="news-content">
+                        <span class="news-category">Văn Hóa</span>
+                        <h3 class="news-title">Chương Trình Phúc Lợi Nhân Viên Được Nâng Cấp Toàn Diện</h3>
+                        <p class="news-excerpt">Công ty triển khai gói phúc lợi mới bao gồm bảo hiểm sức khỏe cao cấp, hỗ trợ học tập và phát triển kỹ năng, cùng môi trường làm việc linh hoạt.</p>
+                        <div class="news-meta">
+                            <div class="news-author">People & Culture</div>
+                            <div class="news-time">3 tuần trước</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-image" data-icon="🏆"></div>
+                    <div class="news-content">
+                        <span class="news-category">Giải Thưởng</span>
+                        <h3 class="news-title">Nhận Giải "Best Workplace Innovation 2025"</h3>
+                        <p class="news-excerpt">Chúng tôi vinh dự được trao giải thưởng "Đổi Mới Môi Trường Làm Việc Tốt Nhất 2025" nhờ những sáng kiến về văn hóa doanh nghiệp và công nghệ.</p>
+                        <div class="news-meta">
+                            <div class="news-author">Awards Committee</div>
+                            <div class="news-time">1 tháng trước</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Press Release -->
+            <div id="press-news" class="news-grid">
+                <div class="news-card">
+                    <div class="news-image" data-icon="📢"></div>
+                    <div class="news-content">
+                        <span class="news-category">Thông Cáo</span>
+                        <h3 class="news-title">Chính Thức Ra Mắt Nền Tảng GreenTech Ecosystem</h3>
+                        <p class="news-excerpt">Hôm nay, chúng tôi tự hào công bố việc ra mắt hệ sinh thái công nghệ xanh toàn diện, kết nối các startup, nhà đầu tư và doanh nghiệp trong lĩnh vực bền vững.</p>
+                        <div class="news-meta">
+                            <div class="news-author">Press Office</div>
+                            <div class="news-time">3 ngày trước</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-image" data-icon="🤝"></div>
+                    <div class="news-content">
+                        <span class="news-category">Hợp Tác</span>
+                        <h3 class="news-title">Ký Kết Thỏa Thuận Hợp Tác Với Tập Đoàn Công Nghệ Hàng Đầu Châu Á</h3>
+                        <p class="news-excerpt">Thỏa thuận hợp tác chiến lược này sẽ mở ra cơ hội mở rộng thị trường và phát triển các giải pháp công nghệ tiên tiến cho khu vực Đông Nam Á.</p>
+                        <div class="news-meta">
+                            <div class="news-author">Business Development</div>
+                            <div class="news-time">1 tuần trước</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-image" data-icon="💰"></div>
+                    <div class="news-content">
+                        <span class="news-category">Đầu Tư</span>
+                        <h3 class="news-title">Hoàn Thành Vòng Gọi Vốn Series C Trị Giá 200 Triệu USD</h3>
+                        <p class="news-excerpt">Vòng gọi vốn thành công này sẽ được sử dụng để mở rộng quy mô hoạt động, phát triển sản phẩm mới và tăng cường đầu tư vào nghiên cứu phát triển.</p>
+                        <div class="news-meta">
+                            <div class="news-author">Investment Relations</div>
+                            <div class="news-time">2 tuần trước</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-image" data-icon="🌍"></div>
+                    <div class="news-content">
+                        <span class="news-category">Mở Rộng</span>
+                        <h3 class="news-title">Chính Thức Có Mặt Tại 15 Quốc Gia Trên Thế Giới</h3>
+                        <p class="news-excerpt">Sau kế hoạch mở rộng toàn cầu, chúng tôi đã chính thức hoạt động tại 15 quốc gia với đội ngũ hơn 5000 nhân viên trên toàn thế giới.</p>
+                        <div class="news-meta">
+                            <div class="news-author">Global Operations</div>
+                            <div class="news-time">3 tuần trước</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-image" data-icon="🔬"></div>
+                    <div class="news-content">
+                        <span class="news-category">R&D</span>
+                        <h3 class="news-title">Khánh Thành Trung Tâm Nghiên Cứu và Phát Triển Mới</h3>
+                        <p class="news-excerpt">Trung tâm R&D hiện đại với diện tích 10,000m² được trang bị các thiết bị công nghệ cao nhất, tập trung vào AI, IoT và Blockchain.</p>
+                        <div class="news-meta">
+                            <div class="news-author">R&D Department</div>
+                            <div class="news-time">1 tháng trước</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function showNews(category) {
+            // Remove active class from all buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            // Hide all news grids
+            document.querySelectorAll('.news-grid').forEach(grid => {
+                grid.classList.remove('active');
+            });
+            
+            // Show selected news grid with animation
+            const targetGrid = document.getElementById(category + '-news');
+            if (targetGrid) {
+                targetGrid.classList.add('active');
+                
+                // Re-animate cards
+                const cards = targetGrid.querySelectorAll('.news-card');
+                cards.forEach((card, index) => {
+                    card.style.animation = 'none';
+                    card.offsetHeight; // Trigger reflow
+                    card.style.animation = `fadeInUp 0.6s ease forwards`;
+                    card.style.animationDelay = `${index * 0.1}s`;
+                });
+            }
+        }
+
+        // Smooth scroll for hero CTA
+        document.querySelector('.hero-cta').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('#news').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Observe news cards
+            document.querySelectorAll('.news-card').forEach(card => {
+                observer.observe(card);
+            });
+
+            // Observe section elements
+            document.querySelectorAll('.section-title, .filter-tabs').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Add stagger animation to initial load
+            const initialCards = document.querySelectorAll('#all-news .news-card');
+            initialCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroImage = document.querySelector('.hero-image');
+            const shapes = document.querySelectorAll('.shape');
+            
+            if (heroImage) {
+                heroImage.style.transform = `rotate(-5deg) translateY(${scrolled * 0.1}px)`;
+            }
+            
+            shapes.forEach((shape, index) => {
+                const speed = 0.05 + (index * 0.02);
+                shape.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Add hover effects for news cards
+        document.querySelectorAll('.news-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

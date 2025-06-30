@@ -1,0 +1,314 @@
+ /* DARK MODE cho index.css */
+body.dark-mode {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+/* Nếu trang có section, card, table... */
+body.dark-mode .section,
+body.dark-mode .card,
+body.dark-mode .table {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  border-color: #333;
+}
+
+ body{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #d7f5e9, #f0fff7);
+          
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            
+            color: #111;
+            overflow-x: hidden;
+ }
+ .news-section h2 {
+    font-size: 2.2rem;
+    text-transform: uppercase;
+  }
+
+  .card-img-top {
+    height: 220px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  .card {
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  .card-text {
+    font-size: 0.95rem;
+    color: #555;
+  }
+
+  .btn-sm {
+    font-weight: 500;
+    border-radius: 20px;
+  }
+
+  @media (max-width: 767px) {
+    .card-img-top {
+      height: 180px;
+    }
+  }
+
+  .card-body .btn-sm {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+  }
+
+  .card-title {
+    font-size: 0.95rem;
+  }
+
+  .card-text {
+    font-size: 0.82rem;
+    margin-bottom: 0.4rem;
+  }
+  .news-section h2 {
+  font-size: 2.4rem;
+  text-transform: uppercase;
+  color: #2e7d32;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+.news-section h2::after {
+  content: "";
+  width: 80px;
+  height: 4px;
+  background: #2e7d32;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -10px;
+  border-radius: 2px;
+}
+
+.card {
+  border-radius: 12px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  background: #fff;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 28px rgba(0, 0, 0, 0.12);
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.card-text {
+  font-size: 0.88rem;
+  color: #555;
+}
+
+.card-img-top {
+  height: 220px;
+  object-fit: cover;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  transition: transform 0.4s ease;
+}
+
+.card:hover .card-img-top {
+  transform: scale(1.03);
+}
+
+.btn-outline-success {
+  border-radius: 50px;
+  font-weight: 600;
+  padding: 5px 14px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-outline-success:hover {
+  background-color: #2e7d32;
+  color: #fff;
+}
+.news-section {
+  background-color: #f5f7fa;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 28px rgba(0, 0, 0, 0.08);
+}
+body {
+  background-color: #e8f5e9; /* Nền xanh dịu */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* Tiêu đề chính */
+.news-section h2 {
+  font-size: 2.2rem;
+  color: #2e7d32;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+/* Card hiển thị tin */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+  height: 220px;
+  object-fit: cover;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.card-title {
+  font-size: 1rem;
+  color: #1b5e20;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  color: #4e5d52;
+}
+
+/* Nút */
+.btn-outline-success {
+  color: #2e7d32;
+  border-color: #2e7d32;
+  font-weight: 600;
+  transition: 0.3s ease;
+  border-radius: 20px;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.85rem;
+}
+
+.btn-outline-success:hover {
+  background-color: #2e7d32;
+  color: white;
+  border-color: #2e7d32;
+}
+
+/* Responsive ảnh */
+@media (max-width: 767px) {
+  .card-img-top {
+    height: 180px;
+  }
+}
+ body {
+    background-color: #000000;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .section-header {
+    background: linear-gradient(to right, #0f9d58, #34a853);
+    color: rgb(255, 255, 255);
+    padding: 60px 0;
+  }
+
+  .section-header h1 {
+    font-size: 2.8rem;
+  }
+
+  .section-header p {
+    font-size: 1.1rem;
+  }
+
+  .card-img-top {
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .card {
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-sm {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+  }
+
+  .news-sidebar .card {
+    border-radius: 8px;
+  }
+
+  .news-sidebar img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .blockquote {
+    font-style: italic;
+  }
+
+  .subscribe-section {
+    background: #326e51;
+    color: white;
+    padding: 50px 0;
+  }
+
+  .subscribe-section input {
+    border-radius: 50px;
+    padding: 0.5rem 1rem;
+  }
+
+  .subscribe-section button {
+    border-radius: 50px;
+  }
+  /*Lọc và tìm kiếm*/
+  .custom-filter .form-label i {
+  font-size: 1rem;
+  color: #198754; /* Màu xanh Bootstrap (success) */
+}
+
+.custom-filter input,
+.custom-filter select {
+  max-width: 220px;
+  font-size: 0.9rem;
+}
+
+.custom-filter button {
+  min-width: 60px;
+}
